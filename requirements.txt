@@ -1,0 +1,6 @@
+flask
+deepface
+tensorflow
+opencv-python
+numpy
+Pillow

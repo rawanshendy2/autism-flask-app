@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>أوتيسم لينك</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background-image: url('static/images/bg.jpg');
+      background-size: cover;
+      background-position: center;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      color: #fff;
+      direction: rtl;
+    }
+
+    .container {
+      background-color: #2e1e42; /* لون ثابت هادي وغير شفاف */
+      padding: 50px;
+      border-radius: 25px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      text-align: center;
+      width: 550px;
+    }
+
+    h1 {
+      color: #ffd700; /* لون ذهبي جميل */
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    h3 {
+      color: #e0e0e0;
+      font-size: 24px;
+      margin-bottom: 30px;
+      font-weight: normal;
+    }
+
+    label {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 15px;
+      color: #ffffff;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .file-upload-box {
+      background-color: #6a1b9a;
+      padding: 15px 20px;
+      border-radius: 10px;
+      font-size: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      display: inline-block;
+      color: #fff;
+      width: 100%;
+    }
+
+    .file-upload-box:hover {
+      background-color: #4a148c;
+    }
+
+    .btn {
+      background-color: #43a047;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 22px;
+      border-radius: 10px;
+      margin-top: 25px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .btn:hover {
+      background-color: #2e7d32;
+    }
+
+    .result {
+      margin-top: 30px;
+    }
+
+    .result img {
+      width: 300px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .tag {
+      font-size: 24px;
+      margin-top: 10px;
+      color: #fff;
+    }
+
+    .emotion {
+      font-size: 22px;
+      color: #ff80ab;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>أوتيسم لينك</h1>
+    <h3>تنبؤ وتصنيف اضطراب طيف التوحد</h3>
+
+    <form method="POST" enctype="multipart/form-data">
+      <label for="file-upload"><i class="fas fa-file-upload"></i> رفع الصورة</label>
+      <label class="file-upload-box" for="file-upload">اختر صورة من جهازك</label>
+      <input type="file" id="file-upload" name="image" accept="image/*" required>
+
+      <button type="submit" class="btn"><i class="fas fa-upload"></i> رفع الصورة والتنبؤ</button>
+    </form>
+
+    {% if img_path %}
+    <div class="result">
+      <img src="{{ img_path }}" alt="الصورة المرفوعة">
+      <div class="tag"><strong>النتيجة:</strong> {{ result }}</div>
+      {% if result == 'توحد' and emotion %}
+      <div class="emotion"><strong>العاطفة المكتشفة:</strong> {{ emotion }}</div>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
+
